@@ -1,6 +1,6 @@
 package application;
 
-public class User {
+public class User extends Unit {
 	static int idCount = 1;
 	String id;
 	String firstName;
@@ -16,10 +16,11 @@ public class User {
 		name = firstName + " " + lastName;
 	}
 	
-	public String getInfo() {
-		StringBuilder result = new StringBuilder(id);
-		result.append(" ").append(firstName).append(" ")
-		.append(lastName).append(" ").append(money);
-		return result.toString();
+	String getId() {
+		return id;
+	}
+	
+	String[] getInfo() {
+		return new String[] {id, name, String.format("%.2f",money)};
 	}
 }

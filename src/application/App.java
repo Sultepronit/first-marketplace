@@ -27,27 +27,39 @@ public class App {
 	userList[1] = new User("Anna", "Yamada", 2000.00);
 	userList[2] = new User("Stepan", "Muts", 359.75);
 	}
+	
+	static void printOutList(Unit[] list) {	
+		//System.out.println("┌───────┬───────────────────────────────────┐");	
+		
+		int w1, w2 = 0, w3 = 0;//width of 3 columns
+		String[][] stringList = new String[list.length][3];
+		for(int i = 0; i < list.length; i++) {
+			stringList[i] = list[i].getInfo();
+			w2 = (w2 < stringList[i][1].length()) ? stringList[i][1].length() : w2;
+			w3 = (w3 < stringList[i][2].length()) ? stringList[i][2].length() : w3;
+		}
+		w1 = stringList[0][0].length();
+		
+		String tableFormat = " %-" + w1 + "s │ %-" + w2 + "s │ ";
+		String numberFormat = "%" + w3 + "s%n";
+		System.out.format(tableFormat, "ID:", "Name:");
+		System.out.println("Amount of money:");
+		
+		for(int i = 0; i < 3; i++) {
+			String[] info = list[i].getInfo();
+			System.out.format(tableFormat, info[0], info[1]);
+			System.out.format(numberFormat, info[2]);
+		}
+	}
 
 	public static void main(String[] args) {
 		
 		System.out.println("Hello! This marketplace app have no GUI.\nJust follow simple instructions here.");
 		
 		createDatabase();
-		/*String leftAlignFormat = "│ %-15s │ %-4d │\n";
-		for (int i = 0; i < 5; i++) {
-		    System.out.format(leftAlignFormat, "some data" + i, i * i);
-		}*/
 		
-		//System.out.println("┌───────┬───────────────────────────────────┐");
-		
-		//String tableFormat = " %-5s │ %-13s │%n";
-		String tableFormat = " %-5s │ %-13s │ ";
-		System.out.format(tableFormat, "ID:", "Name:");
-		System.out.println("Amount of money:");
-		for(int i = 0; i < 3; i++) {
-			System.out.format(tableFormat, userList[i].id, userList[i].name);
-			System.out.format("%8.2f%n", userList[i].money, "%n"); 
-		}		
+		printOutList(userList);
+		printOutList(productList);	
 		
 		/*System.out.println(productList[1].name);
 		System.out.println(productList[1].id);
