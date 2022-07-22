@@ -106,27 +106,33 @@ public class App {
 	
 	static byte buyingProcess = 0;
 	
-	static void buy() {
+	static void buy(String command) {
+		String commandNoCase = command.toLowerCase();
 		if(buyingProcess == 0) {
 			System.out.println("To purchase a product, enter your user ID.");
-			buyingProcess = 1;
+			buyingProcess++;
+		} else if(buyingProcess == 1) {
+			if(checkUserID(commandNoCase)) {
+				System.out.println("Now enter the product ID.");
+				buyingProcess++;
+			}
+			else {
+				buyingProcess = -1;
+			}
+		} else if(buyingProcess == 2) {
+			if(checkProductID(commandNoCase)) {
+				System.out.println("You've did it!");
+				buyingProcess = 0;
+			}else {
+				buyingProcess = -1;
+			}
 		}
 		
-		//Scanner scanner = new Scanner(System.in);
-		//String command = scanner.nextLine();
-		/*if( checkProductID(command.toLowerCase()) ) {
-			System.out.println("Now enter the product ID.");
-		}*/
 		
-		//if(checkUserID(commandNoCase)) break;
-		 
-		/*while(oneMoreTime) {
-			String command = in.nextLine();
-			checkMainCommands(command);
-			
-			//System.out.println("Enter your next command");
-		}*/
-		//scanner.close();
+		if(buyingProcess < 0) {
+			System.out.println("Wrong command. If you want to buy something, try again from the \"buy\" command.");
+			buyingProcess = 0;
+		}
 	}
 	
 	static void checkMainCommands(String command) {
@@ -145,7 +151,7 @@ public class App {
 			if(commandNoCase.equals("buy")) { 
 				//tool.buy(0);
 				//System.out.println("To purchase a product, enter your user ID.");
-				buy();
+				buy("");
 				break;
 			}
 			
@@ -202,8 +208,13 @@ public class App {
 		 
 		while(oneMoreTime) {
 			String command = in.nextLine();
-			//String command = scan();
-			checkMainCommands(command);
+			
+			if(buyingProcess < 1) {
+				checkMainCommands(command);
+			}
+			else {
+				buy(command);
+			}
 			
 			//System.out.println("Enter your next command");
 		}
