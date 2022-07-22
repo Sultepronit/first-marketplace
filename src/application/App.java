@@ -67,7 +67,7 @@ public class App {
 	
 	static boolean checkProductID(String command) {
 		if(command.charAt(0) != 'p') return false;
-		int index = StringToInt(command.substring(1));
+		int index = tool.StringToInt(command.substring(1));
 		if(index < 0) return false;
 		if(index > productList.length || index < 1) {
 			System.out.println("There are no products with this ID. Check the list and try again.");
@@ -75,12 +75,15 @@ public class App {
 			return false;
 		}
 		System.out.println(productList[--index].getInfoLine());
+		if(tool.waitForProductID) {
+			//tool.buy(1);
+		}
 		return true;
 	}
 	
 	static boolean checkUserID(String command) {
 		if(command.charAt(0) != 'u') return false;
-		int index = StringToInt(command.substring(1));
+		int index = tool.StringToInt(command.substring(1));
 		if(index < 0) return false;
 		if(index > userList.length || index < 1) {
 			System.out.println("There are no users with this ID. Check the list and try again.");
@@ -88,7 +91,42 @@ public class App {
 			return false;
 		}
 		System.out.println(userList[--index].getInfoLine());
+		if(tool.waitForUserID) {
+			//tool.buy(1);
+		}
 		return true;
+	}
+	
+	/*static String scan() {
+		Scanner scanner = new Scanner(System.in);
+		String string = scanner.nextLine();
+		scanner.close();
+		return string;
+	}*/
+	
+	static byte buyingProcess = 0;
+	
+	static void buy() {
+		if(buyingProcess == 0) {
+			System.out.println("To purchase a product, enter your user ID.");
+			buyingProcess = 1;
+		}
+		
+		//Scanner scanner = new Scanner(System.in);
+		//String command = scanner.nextLine();
+		/*if( checkProductID(command.toLowerCase()) ) {
+			System.out.println("Now enter the product ID.");
+		}*/
+		
+		//if(checkUserID(commandNoCase)) break;
+		 
+		/*while(oneMoreTime) {
+			String command = in.nextLine();
+			checkMainCommands(command);
+			
+			//System.out.println("Enter your next command");
+		}*/
+		//scanner.close();
 	}
 	
 	static void checkMainCommands(String command) {
@@ -105,7 +143,9 @@ public class App {
 			}
 			
 			if(commandNoCase.equals("buy")) { 
-				tool.buy();
+				//tool.buy(0);
+				//System.out.println("To purchase a product, enter your user ID.");
+				buy();
 				break;
 			}
 			
@@ -162,9 +202,10 @@ public class App {
 		 
 		while(oneMoreTime) {
 			String command = in.nextLine();
+			//String command = scan();
 			checkMainCommands(command);
 			
-			System.out.println("Enter your next command");
+			//System.out.println("Enter your next command");
 		}
 		in.close();
 	}
