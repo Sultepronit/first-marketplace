@@ -5,6 +5,8 @@
 
 *bin
 
+*.lnk
+
 # Compiled class file
 *.class
 

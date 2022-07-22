@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Scanner;
+
 public class App {
 	
 	//simple database imitation
@@ -28,7 +30,7 @@ public class App {
 	userList[2] = new User("Stepan", "Muts", 359.75);
 	}
 	
-	static void printOutList(Unit[] list) {	
+	static void printOutList(Unit[] list, String sum) {	
 		//System.out.println("┌───────┬───────────────────────────────────┐");	
 		
 		int w1, w2 = 0, w3 = 0;//width of 3 columns
@@ -43,29 +45,83 @@ public class App {
 		String tableFormat = " %-" + w1 + "s │ %-" + w2 + "s │ ";
 		String numberFormat = "%" + w3 + "s%n";
 		System.out.format(tableFormat, "ID:", "Name:");
-		System.out.println("Amount of money:");
+		System.out.println(sum);
 		
-		for(int i = 0; i < 3; i++) {
-			String[] info = list[i].getInfo();
-			System.out.format(tableFormat, info[0], info[1]);
-			System.out.format(numberFormat, info[2]);
+		for(int i = 0; i < list.length; i++) {
+			System.out.format(tableFormat, stringList[i][0], stringList[i][1]);
+			System.out.format(numberFormat, stringList[i][2]);
 		}
+	}
+	
+	static void printOutUserList() {
+		System.out.println("List of all users:");
+		printOutList(userList, "Amount of money:");
+	}
+	
+	static void printOutProductList() {
+		System.out.println("List of all products:");
+		printOutList(productList, "Price:");
+	}
+	
+	static void showCommand() {
+
+		String[][] commands = {
+				//{"Command:", "Description:"},
+				{"products", "Shows the list of all products"},
+				{"users", "Shows the list of all users"},
+				{"(product_ID)", "Shows information about the product [use it to buy something]"},
+				{"(user_ID)", "Shows information about the user"},
+				{"buy", "Lets you buy something [you need to know product_ID and user_ID]"},
+				{"exit", "Exits from this programm"},
+		};
+		
+		for(String[] command: commands) {
+			//" %-9s │ %-"
+			System.out.format(" %-12s │ %s%n", command[0], command[1]);
+			//System.out.println(command[1]);
+		}
+		
+		System.out.println("Enter one of the commands from the list above");
+		
+		Scanner in = new Scanner(System.in);
+		
+		boolean oneMoreTime = true; 
+		outerLoop: while(oneMoreTime) {
+			String command = in.nextLine();
+			switch(command) {
+				case "products": 
+					printOutProductList();
+					break;
+					
+				case "users": 
+					printOutUserList();
+					break;
+					
+				case "(product_ID)": 
+					System.out.println("(product_ID) is nota command. Enter ID of actual prodact.");
+					printOutProductList();
+					break;
+					
+				case "exit": 
+					oneMoreTime = false;
+					break outerLoop;
+			}
+			System.out.println("Enter your next command");
+		}
+		in.close();
 	}
 
 	public static void main(String[] args) {
 		
-		System.out.println("Hello! This marketplace app have no GUI.\nJust follow simple instructions here.");
+		System.out.println("Hello! This marketplace app does not have a GUI. Just follow the simple instructions.");
 		
 		createDatabase();
 		
-		printOutList(userList);
-		printOutList(productList);	
-		
-		/*System.out.println(productList[1].name);
-		System.out.println(productList[1].id);
-		
-		System.out.println(userList[2].id);
-		System.out.println(userList[2].money);*/
+		//printOutUserList();
+		//printOutProductList();
+
+		showCommand();
+
 	}
 
 }
