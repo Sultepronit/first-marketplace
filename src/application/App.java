@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class App {
 	
+	static Manipulations tool = new Manipulations(); 
+	
 	//simple database imitation
 	static Product[] productList = new Product[3];
 	static User[] userList = new User[3];
@@ -63,6 +65,32 @@ public class App {
 		printOutList(productList, "Price:");
 	}
 	
+	static boolean checkProductID(String command) {
+		if(command.charAt(0) != 'p') return false;
+		int index = StringToInt(command.substring(1));
+		if(index < 0) return false;
+		if(index > productList.length || index < 1) {
+			System.out.println("There are no products with this ID. Check the list and try again.");
+			printOutProductList();
+			return false;
+		}
+		System.out.println(productList[--index].getInfoLine());
+		return true;
+	}
+	
+	static boolean checkUserID(String command) {
+		if(command.charAt(0) != 'u') return false;
+		int index = StringToInt(command.substring(1));
+		if(index < 0) return false;
+		if(index > userList.length || index < 1) {
+			System.out.println("There are no users with this ID. Check the list and try again.");
+			printOutUserList();
+			return false;
+		}
+		System.out.println(userList[--index].getInfoLine());
+		return true;
+	}
+	
 	static void checkMainCommands(String command) {
 		String commandNoCase = command.toLowerCase();
 		do {
@@ -75,6 +103,15 @@ public class App {
 				printOutUserList();
 				break;
 			}
+			
+			if(commandNoCase.equals("buy")) { 
+				tool.buy();
+				break;
+			}
+			
+			if(checkProductID(commandNoCase)) break;
+			
+			if(checkUserID(commandNoCase)) break;
 			
 			if(commandNoCase.equals("exit")) { 
 				oneMoreTime = false;
@@ -93,12 +130,15 @@ public class App {
 				printOutUserList();
 				break;
 			}
+			
+			System.out.println("\"" + command + "\" is not a command. Use one of the list.");
+			makeMenu();
 		}
 		while(false);
 	}
 	
 	static boolean oneMoreTime = true;
-	static void showCommands() {
+	static void makeMenu() {
 
 		String[][] commands = {
 				//{"Command:", "Description:"},
@@ -134,8 +174,7 @@ public class App {
 		System.out.println("Hello! This marketplace app does not have a GUI. Just follow the simple instructions.");
 		
 		createDatabase();
-
-		showCommands();
+		makeMenu();
 
 	}
 

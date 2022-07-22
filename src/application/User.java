@@ -16,11 +16,11 @@ public class User extends Unit {
 		name = firstName + " " + lastName;
 	}
 	
-	String getId() {
-		return id;
+	public String[] getInfo() {
+		return new String[] {id, name, String.format("%.2f",money)};
 	}
 	
-	String[] getInfo() {
-		return new String[] {id, name, String.format("%.2f",money)};
+	public String getInfoLine() {
+		return id + ": " + name + ", amount of money: " + String.format("%.2f",money);
 	}
 }

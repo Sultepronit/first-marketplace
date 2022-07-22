@@ -4,13 +4,13 @@ public class Unit {
 	String id;
 	String name;
 	
-	String getId() {
-		return id;
-	}
-	
-	String[] getInfo() {
+	public String[] getInfo() {
 		return new String[0];
 	}
+	
+	/*String getInfoLine() {
+		return id + ": " + name;
+	}*/
 }
 
 /*class Product {

@@ -10,7 +10,11 @@ public class Product extends Unit {
 		id = "P"+String.format("%04d", idCount++);
 	}
 	
-	String[] getInfo() {
+	public String[] getInfo() {
 		return new String[] {id, name, String.format("%.2f",price)};
+	}
+	
+	public String getInfoLine() {
+		return id + ": " + name + ", price: " + String.format("%.2f",price);
 	}
 }
