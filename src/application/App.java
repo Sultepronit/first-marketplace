@@ -23,10 +23,7 @@ public class App {
 	productList[2].price = 150.00;
 	
 	//users///////////////////////////
-	/*for(int i = 0; i < userList.length; i++) {
-		userList[i] = new User();
-	}*/
-	userList[0] = new User("John", "Smith", 10000.00);
+	userList[0] = new User("John", "McDonald", 10000.00);
 	userList[1] = new User("Anna", "Yamada", 2000.00);
 	userList[2] = new User("Stepan", "Muts", 359.75);
 	}
@@ -36,12 +33,27 @@ public class App {
 		System.out.println("Hello! This marketplace app have no GUI.\nJust follow simple instructions here.");
 		
 		createDatabase();
+		/*String leftAlignFormat = "│ %-15s │ %-4d │\n";
+		for (int i = 0; i < 5; i++) {
+		    System.out.format(leftAlignFormat, "some data" + i, i * i);
+		}*/
 		
-		System.out.println(productList[1].name);
+		//System.out.println("┌───────┬───────────────────────────────────┐");
+		
+		//String tableFormat = " %-5s │ %-13s │%n";
+		String tableFormat = " %-5s │ %-13s │ ";
+		System.out.format(tableFormat, "ID:", "Name:");
+		System.out.println("Amount of money:");
+		for(int i = 0; i < 3; i++) {
+			System.out.format(tableFormat, userList[i].id, userList[i].name);
+			System.out.format("%8.2f%n", userList[i].money, "%n"); 
+		}		
+		
+		/*System.out.println(productList[1].name);
 		System.out.println(productList[1].id);
 		
 		System.out.println(userList[2].id);
-		System.out.println(userList[2].money);
+		System.out.println(userList[2].money);*/
 	}
 
 }
