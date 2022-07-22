@@ -63,13 +63,48 @@ public class App {
 		printOutList(productList, "Price:");
 	}
 	
-	static void showCommand() {
+	static void checkMainCommands(String command) {
+		String commandNoCase = command.toLowerCase();
+		do {
+			if(commandNoCase.equals("products")) { 
+				printOutProductList();
+				break;
+			}
+			
+			if(commandNoCase.equals("users")) { 
+				printOutUserList();
+				break;
+			}
+			
+			if(commandNoCase.equals("exit")) { 
+				oneMoreTime = false;
+				System.out.println("Thank you for using our application!");
+				break;
+			}
+			
+			if(commandNoCase.equals("(product_id)") || commandNoCase.equals("product_id")) { 
+				System.out.println("\"" + command + "\" is not a command. Enter ID of actual product.");
+				printOutProductList();
+				break;
+			}
+			
+			if(commandNoCase.equals("(user_id)") || commandNoCase.equals("user_id")) { 
+				System.out.println("\"" + command + "\" is not a command. Enter ID of actual user.");
+				printOutUserList();
+				break;
+			}
+		}
+		while(false);
+	}
+	
+	static boolean oneMoreTime = true;
+	static void showCommands() {
 
 		String[][] commands = {
 				//{"Command:", "Description:"},
 				{"products", "Shows the list of all products"},
 				{"users", "Shows the list of all users"},
-				{"(product_ID)", "Shows information about the product [use it to buy something]"},
+				{"(product_ID)", "Shows information about the product"},
 				{"(user_ID)", "Shows information about the user"},
 				{"buy", "Lets you buy something [you need to know product_ID and user_ID]"},
 				{"exit", "Exits from this programm"},
@@ -84,28 +119,11 @@ public class App {
 		System.out.println("Enter one of the commands from the list above");
 		
 		Scanner in = new Scanner(System.in);
-		
-		boolean oneMoreTime = true; 
-		outerLoop: while(oneMoreTime) {
+		 
+		while(oneMoreTime) {
 			String command = in.nextLine();
-			switch(command) {
-				case "products": 
-					printOutProductList();
-					break;
-					
-				case "users": 
-					printOutUserList();
-					break;
-					
-				case "(product_ID)": 
-					System.out.println("(product_ID) is nota command. Enter ID of actual prodact.");
-					printOutProductList();
-					break;
-					
-				case "exit": 
-					oneMoreTime = false;
-					break outerLoop;
-			}
+			checkMainCommands(command);
+			
 			System.out.println("Enter your next command");
 		}
 		in.close();
@@ -116,11 +134,8 @@ public class App {
 		System.out.println("Hello! This marketplace app does not have a GUI. Just follow the simple instructions.");
 		
 		createDatabase();
-		
-		//printOutUserList();
-		//printOutProductList();
 
-		showCommand();
+		showCommands();
 
 	}
 
