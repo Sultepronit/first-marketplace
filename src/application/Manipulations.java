@@ -23,8 +23,8 @@ public class Manipulations {
 		}
 		System.out.println(Database.userList[--index].getInfoLine());
 		System.out.println("You can buy something now by entering the product ID.");
-		/*buying.user = userList[index];
-		buying.status = 2;*/
+		Buying.userIndex = index;
+		Buying.status = 2;
 		return true;
 	}
 	
@@ -35,17 +35,15 @@ public class Manipulations {
 		if(index > Database.productList.length || index < 1) {
 			System.out.println("There are no products with this ID. Check the list and try again.");
 			Database.printOutProductList();
-			//buying.status++;
+			Buying.status++;//let user buy product after he enter proper ID 
 			return false;
 		}
 		System.out.println(Database.productList[--index].getInfoLine());
-		/*if(buying.status > 0) {
-			buying.product = productList[index];
-			buying.buy();
-		}*/
-		/*if(tool.waitForProductID) {
-			//tool.buy(1);
-		}*/
+		if(Buying.status > 0) {
+			Buying.productIndex = index;
+			Buying.buy();
+		}
+
 		return true;
 	}
 	
@@ -71,37 +69,4 @@ public class Manipulations {
 		return false;
 	}
 	
-	public boolean waitForUserID = false;
-	public boolean waitForProductID = false;
-	
-	public void buy(int stage) {
-		if(waitForProductID) {
-			
-		} else if(waitForUserID) {
-			System.out.println("Now enter ID of the product.");
-			waitForUserID = false;
-			waitForProductID = true;
-		} else {
-			System.out.println("To purchase a product, enter your user ID.");
-			waitForUserID = true;
-		}
-		/*switch (stage) {
-			case 0:
-				System.out.println("To purchase a product, enter your user ID.");
-				break;
-			case 1:
-				//System.out.println("To purchase a product, enter its ID.");
-		}*/
-		//System.out.println("To purchase a product, enter its ID.");
-		/*Scanner in = new Scanner(System.in);
-		
-		boolean oneMoreTime = true;
-		while(oneMoreTime) {
-			String command = in.nextLine();
-			//checkMainCommands(command);
-			
-			System.out.println("Enter your next command");
-		}
-		in.close();*/
-	}
 }

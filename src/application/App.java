@@ -137,6 +137,17 @@ public class App {
 	static void checkMainCommands(String command) {
 		String commandNoCase = command.toLowerCase();
 		do {
+			if(Buying.status > 1) {
+				Buying.status = 0;
+				if(commandNoCase.equals("y")) {
+					Buying.confirm();
+				}
+				else {
+					System.out.println("Canceled.\nYou may enter new command.");
+				}
+				break;
+			}
+			
 			if(commandNoCase.equals("products")) { 
 				Database.printOutProductList();
 				break;
@@ -150,10 +161,16 @@ public class App {
 				System.out.println("Thank you for using our application!");
 				break;
 			}
+			if(command == "") {
+				System.out.println("Please, enter a command");
+				break;
+			}
 			if(tool.checkComplexCommand(command, commandNoCase)) {
 				break;
 			}
 			
+			System.out.println(Buying.conf);
+			System.out.println(Buying.status);
 			System.out.println("\"" + command + "\" is not a command. Use one of the list.");
 			makeMenu();
 		}
@@ -181,8 +198,8 @@ public class App {
 		while(oneMoreTime) {
 			String command = in.nextLine();
 			
-			if(buying.status > 0) {
-				buying.status--;
+			if(Buying.status > 0) {
+				Buying.status--;
 			}
 			checkMainCommands(command);
 			
@@ -195,30 +212,9 @@ public class App {
 		
 		System.out.println("Hello! This marketplace app does not have a GUI. Just follow the simple instructions.");
 		
-		//createDatabase();
-		//makeMenu();
-		
 		//Database base = new Database();
 		makeMenu();
 
 	}
 
-}
-
-class Buying {
-	public byte status = 0;
-	
-	//public User user;// = new User();
-	//public Product product;// = new Product();
-	public int userIndex = 0;
-	public int productIndex = 0;
-	
-	public void buy() {
-		System.out.print("Do you confirm the purchase of poduct");
-		//System.out.println(productList[productIndex].id);
-		System.out.println("by user");
-		//user.getInfoLine();
-		System.out.println("? Enter Y/N.");
-	}
-	
 }
