@@ -2,7 +2,6 @@ package application;
 
 public class Buying {
 	static byte status = 0;
-	static boolean conf = false;
 	static int userIndex = 0;
 	static int productIndex = 0;
 	
@@ -13,12 +12,11 @@ public class Buying {
 		System.out.print(Database.userList[userIndex].name);
 		System.out.println("?\nEnter Y/N");
 		status = 5;
-		conf = true;
 	}
 	
 	static void confirm() {
 		double sum = Database.userList[userIndex].money - Database.productList[productIndex].price;
-		//System.out.println("Success!");
+
 		if(sum < 0) {
 			System.out.println("Error! The price exceeds your amount of money!");
 		}
@@ -26,6 +24,11 @@ public class Buying {
 			Database.userList[userIndex].money = sum;
 			System.out.print("Success! Your account balance is now: ");
 			System.out.println(Database.userList[userIndex].moneyToString());
+			
+			int[] record = {userIndex, productIndex};
+			Database.purchases.add(record);
+			Database.userList[userIndex].purchaseCount++;
+			Database.productList[productIndex].purchaseCount++;
 		}
 		
 	}	

@@ -1,16 +1,19 @@
 package application;
 
+import java.util.*;
+
 public class Database {
 	//simple database imitation
 	static Product[] productList = new Product[3];
 	static User[] userList = new User[3];
-	//public void createDatabase() {
+	static ArrayList<int[]> purchases = new ArrayList<int[]>();
+	
 	Database() {
-	//products///////////////////////
+
 	productList[0] = new Product("Oven", 1000.00);
 	productList[1] = new Product("Electric kettle", 200.00);
 	productList[2] = new Product("Fan", 150.00);
-	//users///////////////////////////
+
 	userList[0] = new User("John", "McDonald", 10000.00);
 	userList[1] = new User("Anna", "Yamada", 2000.00);
 	userList[2] = new User("Stepan", "Muts", 359.75);

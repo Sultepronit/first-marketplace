@@ -1,10 +1,9 @@
 package application;
 
-//import java.util.Scanner;
-
 public class Manipulations {
 	
 	static int StringToInt(String string) {
+		if(string.length() < 1) return -1;
 		for(int i = 0; i < string.length(); i++) {
 			if(string.charAt(i) < '0') return -1;
 			if(string.charAt(i) > '9') return -1;
@@ -14,6 +13,7 @@ public class Manipulations {
 	
 	static boolean checkUserID(String command) {
 		if(command.charAt(0) != 'u') return false;
+		//if(command == "u") return false;
 		int index = StringToInt(command.substring(1));
 		if(index < 0) return false;
 		if(index > Database.userList.length || index < 1) {
@@ -21,7 +21,7 @@ public class Manipulations {
 			Database.printOutUserList();
 			return false;
 		}
-		System.out.println(Database.userList[--index].getInfoLine());
+		Database.userList[--index].infoOut();
 		System.out.println("You can buy something now by entering the product ID.");
 		Buying.userIndex = index;
 		Buying.status = 2;
@@ -35,10 +35,10 @@ public class Manipulations {
 		if(index > Database.productList.length || index < 1) {
 			System.out.println("There are no products with this ID. Check the list and try again.");
 			Database.printOutProductList();
-			Buying.status++;//let user buy product after he enter proper ID 
+			Buying.status++;//lets user buy product after he enter proper ID 
 			return false;
 		}
-		System.out.println(Database.productList[--index].getInfoLine());
+		Database.productList[--index].infoOut();
 		if(Buying.status > 0) {
 			Buying.productIndex = index;
 			Buying.buy();
@@ -47,7 +47,7 @@ public class Manipulations {
 		return true;
 	}
 	
-	public boolean checkComplexCommand(String command, String commandNoCase) {
+	static boolean checkComplexCommand(String command, String commandNoCase) {
 		
 		if(checkUserID(commandNoCase)) {
 			return true;
