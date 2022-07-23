@@ -12,19 +12,6 @@ public class Manipulations {
 		return Integer.parseInt(string);
 	}
 	
-	/*public boolean checkProductID(String command) {
-		if(command.charAt(0) != 'p') return false;
-		int index = StringToInt(command.substring(1));
-		if(index < 0) return false;
-		if(index > productList.length || index < 1) {
-			System.out.println("There are no products with this ID. Check the list and try again.");
-			printOutProductList();
-			return false;
-		}
-		System.out.println(productList[--index].getInfoLine());
-		return true;
-	}*/
-	
 	public boolean waitForUserID = false;
 	public boolean waitForProductID = false;
 	

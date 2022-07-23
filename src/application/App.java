@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class App {
 	
 	static Manipulations tool = new Manipulations(); 
+	static Buying buying = new Buying();
 	
 	//simple database imitation
 	static Product[] productList = new Product[3];
@@ -33,8 +34,6 @@ public class App {
 	}
 	
 	static void printOutList(Unit[] list, String sum) {	
-		//System.out.println("┌───────┬───────────────────────────────────┐");	
-		
 		int w1, w2 = 0, w3 = 0;//width of 3 columns
 		String[][] stringList = new String[list.length][3];
 		for(int i = 0; i < list.length; i++) {
@@ -72,9 +71,14 @@ public class App {
 		if(index > productList.length || index < 1) {
 			System.out.println("There are no products with this ID. Check the list and try again.");
 			printOutProductList();
+			buying.status++;
 			return false;
 		}
 		System.out.println(productList[--index].getInfoLine());
+		if(buying.status > 0) {
+			buying.product = productList[index];
+			buying.buy();
+		}
 		if(tool.waitForProductID) {
 			//tool.buy(1);
 		}
@@ -91,18 +95,11 @@ public class App {
 			return false;
 		}
 		System.out.println(userList[--index].getInfoLine());
-		if(tool.waitForUserID) {
-			//tool.buy(1);
-		}
+		System.out.println("You can buy something now by entering the product ID.");
+		buying.user = userList[index];
+		buying.status = 2;
 		return true;
 	}
-	
-	/*static String scan() {
-		Scanner scanner = new Scanner(System.in);
-		String string = scanner.nextLine();
-		scanner.close();
-		return string;
-	}*/
 	
 	static byte buyingProcess = 0;
 	
@@ -191,8 +188,8 @@ public class App {
 				{"products", "Shows the list of all products"},
 				{"users", "Shows the list of all users"},
 				{"(product_ID)", "Shows information about the product"},
-				{"(user_ID)", "Shows information about the user"},
-				{"buy", "Lets you buy something [you need to know product_ID and user_ID]"},
+				{"(user_ID)", "Shows information about the user, lets you buy a product"},
+				//{"buy", "Lets you buy something [you need to know product_ID and user_ID]"},
 				{"exit", "Exits from this programm"},
 		};
 		
@@ -209,12 +206,16 @@ public class App {
 		while(oneMoreTime) {
 			String command = in.nextLine();
 			
-			if(buyingProcess < 1) {
+			if(buying.status > 0) {
+				buying.status--;
+			}
+			checkMainCommands(command);
+			/*if(buyingProcess < 1) {
 				checkMainCommands(command);
 			}
 			else {
 				buy(command);
-			}
+			}*/
 			
 			//System.out.println("Enter your next command");
 		}
@@ -226,8 +227,25 @@ public class App {
 		System.out.println("Hello! This marketplace app does not have a GUI. Just follow the simple instructions.");
 		
 		createDatabase();
+		
 		makeMenu();
 
 	}
 
+}
+
+class Buying {
+	public byte status = 0;
+	
+	public User user;// = new User();
+	public Product product;// = new Product();
+	
+	public void buy() {
+		System.out.println("Do you confirm the purchase of poduct");
+		product.getInfoLine();
+		System.out.println("by user");
+		user.getInfoLine();
+		System.out.println("? Enter Y/N.");
+	}
+	
 }
