@@ -2,8 +2,8 @@ package application;
 
 public class Database {
 	//simple database imitation
-	public Product[] productList = new Product[3];
-	public User[] userList = new User[3];
+	static Product[] productList = new Product[3];
+	static User[] userList = new User[3];
 	//public void createDatabase() {
 	Database() {
 	//products///////////////////////
@@ -37,12 +37,12 @@ public class Database {
 		}
 	}
 	
-	public void printOutUserList() {
+	static void printOutUserList() {
 		System.out.println("List of all users:");
 		printOutList(userList, "Amount of money:");
 	}
 	
-	public void printOutProductList() {
+	static void printOutProductList() {
 		System.out.println("List of all products:");
 		printOutList(productList, "Price:");
 	}

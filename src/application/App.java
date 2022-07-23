@@ -66,7 +66,7 @@ public class App {
 		printOutList(productList, "Price:");
 	}*/
 	
-	static boolean checkProductID(String command) {
+	/*static boolean checkProductID(String command) {
 		if(command.charAt(0) != 'p') return false;
 		int index = tool.StringToInt(command.substring(1));
 		if(index < 0) return false;
@@ -85,9 +85,9 @@ public class App {
 			//tool.buy(1);
 		}
 		return true;
-	}
+	}*/
 	
-	static boolean checkUserID(String command) {
+	/*static boolean checkUserID(String command) {
 		if(command.charAt(0) != 'u') return false;
 		int index = tool.StringToInt(command.substring(1));
 		if(index < 0) return false;
@@ -101,9 +101,9 @@ public class App {
 		buying.user = userList[index];
 		buying.status = 2;
 		return true;
-	}
+	}*/
 	
-	static byte buyingProcess = 0;
+	/*static byte buyingProcess = 0;
 	
 	static void buy(String command) {
 		String commandNoCase = command.toLowerCase();
@@ -132,40 +132,27 @@ public class App {
 			System.out.println("Wrong command. If you want to buy something, try again from the \"buy\" command.");
 			buyingProcess = 0;
 		}
-	}
+	}*/
 	
 	static void checkMainCommands(String command) {
 		String commandNoCase = command.toLowerCase();
 		do {
 			if(commandNoCase.equals("products")) { 
-				base.printOutProductList();
+				Database.printOutProductList();
 				break;
 			}
 			if(commandNoCase.equals("users")) { 
-				base.printOutUserList();
+				Database.printOutUserList();
 				break;
 			}
-			/*if(checkProductID(commandNoCase)) {
-				break;
-			}
-			if(checkUserID(commandNoCase)) {
-				break;
-			}*/
 			if(commandNoCase.equals("exit")) { 
 				oneMoreTime = false;
 				System.out.println("Thank you for using our application!");
 				break;
 			}
-			/*if(commandNoCase.equals("(product_id)") || commandNoCase.equals("product_id")) { 
-				System.out.println("\"" + command + "\" is not a command. Enter ID of actual product.");
-				printOutProductList();
+			if(tool.checkComplexCommand(command, commandNoCase)) {
 				break;
 			}
-			if(commandNoCase.equals("(user_id)") || commandNoCase.equals("user_id")) { 
-				System.out.println("\"" + command + "\" is not a command. Enter ID of actual user.");
-				printOutUserList();
-				break;
-			}*/
 			
 			System.out.println("\"" + command + "\" is not a command. Use one of the list.");
 			makeMenu();
