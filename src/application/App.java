@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 public class App {
 	
+	static Database base = new Database();
 	static Manipulations tool = new Manipulations(); 
 	static Buying buying = new Buying();
 	
+	/*
 	//simple database imitation
 	static Product[] productList = new Product[3];
 	static User[] userList = new User[3];
@@ -62,7 +64,7 @@ public class App {
 	static void printOutProductList() {
 		System.out.println("List of all products:");
 		printOutList(productList, "Price:");
-	}
+	}*/
 	
 	static boolean checkProductID(String command) {
 		if(command.charAt(0) != 'p') return false;
@@ -136,43 +138,34 @@ public class App {
 		String commandNoCase = command.toLowerCase();
 		do {
 			if(commandNoCase.equals("products")) { 
-				printOutProductList();
+				base.printOutProductList();
 				break;
 			}
-			
 			if(commandNoCase.equals("users")) { 
-				printOutUserList();
+				base.printOutUserList();
 				break;
 			}
-			
-			if(commandNoCase.equals("buy")) { 
-				//tool.buy(0);
-				//System.out.println("To purchase a product, enter your user ID.");
-				buy("");
+			/*if(checkProductID(commandNoCase)) {
 				break;
 			}
-			
-			if(checkProductID(commandNoCase)) break;
-			
-			if(checkUserID(commandNoCase)) break;
-			
+			if(checkUserID(commandNoCase)) {
+				break;
+			}*/
 			if(commandNoCase.equals("exit")) { 
 				oneMoreTime = false;
 				System.out.println("Thank you for using our application!");
 				break;
 			}
-			
-			if(commandNoCase.equals("(product_id)") || commandNoCase.equals("product_id")) { 
+			/*if(commandNoCase.equals("(product_id)") || commandNoCase.equals("product_id")) { 
 				System.out.println("\"" + command + "\" is not a command. Enter ID of actual product.");
 				printOutProductList();
 				break;
 			}
-			
 			if(commandNoCase.equals("(user_id)") || commandNoCase.equals("user_id")) { 
 				System.out.println("\"" + command + "\" is not a command. Enter ID of actual user.");
 				printOutUserList();
 				break;
-			}
+			}*/
 			
 			System.out.println("\"" + command + "\" is not a command. Use one of the list.");
 			makeMenu();
@@ -188,21 +181,16 @@ public class App {
 				{"products", "Shows the list of all products"},
 				{"users", "Shows the list of all users"},
 				{"(product_ID)", "Shows information about the product"},
-				{"(user_ID)", "Shows information about the user, lets you buy a product"},
-				//{"buy", "Lets you buy something [you need to know product_ID and user_ID]"},
+				{"(user_ID)", "Shows information about the user; lets you buy a product"},
 				{"exit", "Exits from this programm"},
 		};
 		
 		for(String[] command: commands) {
-			//" %-9s │ %-"
 			System.out.format(" %-12s │ %s%n", command[0], command[1]);
-			//System.out.println(command[1]);
 		}
-		
 		System.out.println("Enter one of the commands from the list above");
 		
 		Scanner in = new Scanner(System.in);
-		 
 		while(oneMoreTime) {
 			String command = in.nextLine();
 			
@@ -210,12 +198,6 @@ public class App {
 				buying.status--;
 			}
 			checkMainCommands(command);
-			/*if(buyingProcess < 1) {
-				checkMainCommands(command);
-			}
-			else {
-				buy(command);
-			}*/
 			
 			//System.out.println("Enter your next command");
 		}
@@ -226,8 +208,10 @@ public class App {
 		
 		System.out.println("Hello! This marketplace app does not have a GUI. Just follow the simple instructions.");
 		
-		createDatabase();
+		//createDatabase();
+		//makeMenu();
 		
+		//Database base = new Database();
 		makeMenu();
 
 	}
@@ -237,14 +221,16 @@ public class App {
 class Buying {
 	public byte status = 0;
 	
-	public User user;// = new User();
-	public Product product;// = new Product();
+	//public User user;// = new User();
+	//public Product product;// = new Product();
+	public int userIndex = 0;
+	public int productIndex = 0;
 	
 	public void buy() {
-		System.out.println("Do you confirm the purchase of poduct");
-		product.getInfoLine();
+		System.out.print("Do you confirm the purchase of poduct");
+		//System.out.println(productList[productIndex].id);
 		System.out.println("by user");
-		user.getInfoLine();
+		//user.getInfoLine();
 		System.out.println("? Enter Y/N.");
 	}
 	

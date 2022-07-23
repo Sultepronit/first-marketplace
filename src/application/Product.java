@@ -6,8 +6,10 @@ public class Product extends Unit {
 	public String name;
 	public double price;
 	
-	Product() {
+	Product(String name, double price) {
 		id = "P"+String.format("%04d", idCount++);
+		this.name = name;
+		this.price = price;
 	}
 	
 	public String[] getInfo() {
