@@ -32,8 +32,8 @@ public class User extends Unit {
 				if(n >= purchaseCount) break;
 				if(index == Database.purchases.get(i)[0]) {
 					int productIndex = Database.purchases.get(i)[1];
-					list.append(Database.productList[productIndex].id).append(" ");
-					list.append(Database.productList[productIndex].name).append("\n");
+					list.append(Database.productList.get(productIndex).id).append(" ");
+					list.append(Database.productList.get(productIndex).name).append("\n");
 					n++;
 				}
 			}

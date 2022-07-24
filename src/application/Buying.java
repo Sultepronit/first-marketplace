@@ -7,7 +7,7 @@ public class Buying {
 	
 	static void buy() {
 		System.out.print("Do you confirm the purchase of ");
-		System.out.print(Database.productList[productIndex].name);
+		System.out.print(Database.productList.get(productIndex).name);
 		System.out.print(" by ");
 		System.out.print(Database.userList[userIndex].name);
 		System.out.println("?\nEnter Y/N");
@@ -15,7 +15,7 @@ public class Buying {
 	}
 	
 	static void confirm() {
-		double sum = Database.userList[userIndex].money - Database.productList[productIndex].price;
+		double sum = Database.userList[userIndex].money - Database.productList.get(productIndex).price;
 
 		if(sum < 0) {
 			System.out.println("Error! The price exceeds your amount of money!");
@@ -28,7 +28,7 @@ public class Buying {
 			int[] record = {userIndex, productIndex};
 			Database.purchases.add(record);
 			Database.userList[userIndex].purchaseCount++;
-			Database.productList[productIndex].purchaseCount++;
+			Database.productList.get(productIndex).purchaseCount++;
 		}
 		
 	}	

@@ -48,7 +48,7 @@ public class New {
 					Database.productList.add( new Product(name, price) );
 					System.out.println("Succsess!");
 					Database.productList.get(Database.productList.size() - 1).infoOut();
-					System.out.println(Database.productList.size());
+					//System.out.println(Database.productList.size());
 					prouctStatus = 0;
 				}
 				
@@ -94,7 +94,7 @@ public class New {
 					Database.userList2.add( new User(name, lastName, money) );
 					System.out.println("Succsess!");
 					Database.userList2.get(Database.userList2.size() - 1).infoOut();
-					System.out.println(Database.userList2.size());
+					//System.out.println(Database.userList2.size());
 					userStatus = 0;
 				}
 				

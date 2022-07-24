@@ -31,13 +31,13 @@ public class Manipulations {
 		if(command.charAt(0) != 'p') return false;
 		int index = StringToInt(command.substring(1));
 		if(index < 0) return false;
-		if(index > Database.productList.length || index < 1) {
+		if(index > Database.productList.size() || index < 1) {
 			System.out.println("There are no products with this ID. Check the list and try again.");
 			Database.printOutProductList();
 			Buying.status++;//lets user buy product after he enter proper ID 
 			return false;
 		}
-		Database.productList[--index].infoOut();
+		Database.productList.get(--index).infoOut();
 		if(Buying.status > 0) {
 			Buying.productIndex = index;
 			Buying.buy();
