@@ -15,12 +15,12 @@ public class Manipulations {
 		if(command.charAt(0) != 'u') return false;
 		int index = StringToInt(command.substring(1));
 		if(index < 0) return false;
-		if(index > Database.userList.length || index < 1) {
+		if(index > Database.userList.size() || index < 1) {
 			System.out.println("There are no users with this ID. Check the list and try again.");
 			Database.printOutUserList();
 			return false;
 		}
-		Database.userList[--index].infoOut();
+		Database.userList.get(--index).infoOut();
 		System.out.println("You can buy something now by entering the product ID.");
 		Buying.userIndex = index;
 		Buying.status = 2;

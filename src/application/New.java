@@ -48,7 +48,6 @@ public class New {
 					Database.productList.add( new Product(name, price) );
 					System.out.println("Succsess!");
 					Database.productList.get(Database.productList.size() - 1).infoOut();
-					//System.out.println(Database.productList.size());
 					prouctStatus = 0;
 				}
 				
@@ -91,10 +90,9 @@ public class New {
 			case 3:
 				double money = moneyToDouble(line);
 				if(money > 0) {
-					Database.userList2.add( new User(name, lastName, money) );
+					Database.userList.add( new User(name, lastName, money) );
 					System.out.println("Succsess!");
-					Database.userList2.get(Database.userList2.size() - 1).infoOut();
-					//System.out.println(Database.userList2.size());
+					Database.userList.get(Database.userList.size() - 1).infoOut();
 					userStatus = 0;
 				}
 				

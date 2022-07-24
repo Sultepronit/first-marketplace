@@ -5,10 +5,10 @@ import java.util.*;
 public class Database {
 	//simple database imitation
 	static ArrayList<Product> productList = new ArrayList<Product>();
-	static ArrayList<User> userList2 = new ArrayList<User>();
+	static ArrayList<User> userList = new ArrayList<User>();
 	
 	//static Product[] productList = new Product[3];
-	static User[] userList = new User[3];
+	//static User[] userList = new User[3];
 	static ArrayList<int[]> purchases = new ArrayList<int[]>();
 	
 	Database() {
@@ -20,9 +20,9 @@ public class Database {
 	productList.add( new Product("Electric kettle", 200.00) );
 	productList.add( new Product("Fan", 150.00) );
 
-	userList[0] = new User("John", "McDonald", 10000.00);
-	userList[1] = new User("Anna", "Yamada", 2000.00);
-	userList[2] = new User("Stepan", "Muts", 359.75);
+	userList.add( new User("John", "McDonald", 10000.00) );
+	userList.add( new User("Anna", "Yamada", 2000.00) );
+	userList.add( new User("Stepan", "Muts", 359.75) );
 	}
 	
 	static void printOutList0(Unit[] list, String sum) {	
@@ -88,7 +88,12 @@ public class Database {
 	
 	static void printOutUserList() {
 		System.out.println("List of all users:");
-		printOutList0(userList, "Amount of money:");
+		//printOutList(userList, "Amount of money:");
+		String[][] stringList = new String[userList.size()][3];
+		for(int i = 0; i < userList.size(); i++) {
+			stringList[i] = userList.get(i).getInfo();
+		}
+		printOutList2(stringList, "Amount of money:");
 	}
 	
 	static void printOutProductList() {

@@ -28,8 +28,8 @@ public class Product extends Unit {
 				if(n >= purchaseCount) break;
 				if(index == Database.purchases.get(i)[1]) {
 					int userIndex = Database.purchases.get(i)[0];
-					list.append(Database.userList[userIndex].id).append(" ");
-					list.append(Database.userList[userIndex].name).append("\n");
+					list.append(Database.userList.get(userIndex).id).append(" ");
+					list.append(Database.userList.get(userIndex).name).append("\n");
 					n++;
 				}
 			}
