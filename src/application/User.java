@@ -2,7 +2,7 @@ package application;
 
 public class User {
 	static int idCount = 1;
-	public int index;
+	public int intId;
 	public String id;
 	public String firstName;
 	public String lastName;
@@ -11,7 +11,7 @@ public class User {
 	public int purchaseCount = 0;
 	
 	User(String firstName, String lastName, double money) {
-		index = idCount - 1;
+		intId = idCount;
 		id = "U"+String.format("%04d", idCount++);
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -30,7 +30,7 @@ public class User {
 			int n = 0;
 			for( int i = 0; i < Database.purchases.size(); i++) {
 				if(n >= purchaseCount) break;
-				if(index == Database.purchases.get(i)[0]) {
+				if(intId == Database.purchases.get(i)[0]) {
 					int productIndex = Database.purchases.get(i)[1];
 					list.append(Database.productList.get(productIndex).id).append(" ");
 					list.append(Database.productList.get(productIndex).name).append("\n");

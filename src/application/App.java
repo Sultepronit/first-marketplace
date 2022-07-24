@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class App {
 	
-	//static Database base = new Database(); //creates first users & products
+	static Database base = new Database(); 
 	
 	static void checkMainCommands(String command) {
 		String commandNoCase = command.toLowerCase();

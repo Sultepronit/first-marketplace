@@ -8,20 +8,22 @@ public class Database {
 	static ArrayList<User> userList = new ArrayList<User>();
 	static ArrayList<int[]> purchases = new ArrayList<int[]>();
 
-	static List<Integer> productIndexChanges = new ArrayList<>();
-
-	//static ArrayList<int[]> userIndexChanges = new ArrayList<int[]>();
+	static List<Integer> productIdToIndex = new ArrayList<>();
+	static List<Integer> userIdToIndex = new ArrayList<>();
+	
+	
+	Database() {
+	productIdToIndex.add(0);
+	userIdToIndex.add(0);
 	
 	//creates first users & products
-	/*Database() {
 	productList.add( new Product("Oven", 1000.00) );
 	productList.add( new Product("Electric kettle", 200.00) );
 	productList.add( new Product("Fan", 150.00) );
-
 	userList.add( new User("John", "McDonald", 10000.00) );
 	userList.add( new User("Anna", "Yamada", 2000.00) );
 	userList.add( new User("Stepan", "Muts", 359.75) );
-	}*/
+	}
 	
 	static void printOutList2(String[][] list, String sum) {	
 		int w1, w2 = 0, w3 = 0;//width of 3 columns
@@ -85,14 +87,15 @@ public class Database {
 	}
 	
 	static void deleteProduct() {
-		productList.remove(productToDelete);
-		productIndexChanges.set(productToDelete, -1);
-		for(int i = productToDelete + 1; i < productIndexChanges.size(); i++) {
-			int value = productIndexChanges.get(i) - 1;
-			productIndexChanges.set(i, value);
+		int index = productIdToIndex.get(productToDelete);
+		productList.remove(index);
+		productIdToIndex.set(productToDelete, -1);
+		for(int i = productToDelete + 1; i < productIdToIndex.size(); i++) {
+			int value = productIdToIndex.get(i) - 1;
+			productIdToIndex.set(i, value);
 		}
-		for(int i = 0; i < productIndexChanges.size(); i++) {
-			System.out.println(i + " " + productIndexChanges.get(i));
+		for(int i = 1; i < productIdToIndex.size(); i++) {
+			System.out.println(i + " " + productIdToIndex.get(i));
 		}
 	}
 	

@@ -2,16 +2,16 @@ package application;
 
 public class Product {
 	static int idCount = 1;
-	public int index;
+	public int intId;
 	public String id;
 	public String name;
 	public double price;
 	public int purchaseCount = 0;
 	
 	Product(String name, double price) {
-		index = idCount - 1;
-		Database.productIndexChanges.add( Database.productList.size() );
+		intId = idCount;
 		id = "P"+String.format("%04d", idCount++);
+		Database.productIdToIndex.add( Database.productList.size() );
 		this.name = name;
 		this.price = price;
 	}
@@ -27,7 +27,7 @@ public class Product {
 			int n = 0;
 			for( int i = 0; i < Database.purchases.size(); i++) {
 				if(n >= purchaseCount) break;
-				if(index == Database.purchases.get(i)[1]) {
+				if(intId == Database.purchases.get(i)[1]) {
 					int userIndex = Database.purchases.get(i)[0];
 					list.append(Database.userList.get(userIndex).id).append(" ");
 					list.append(Database.userList.get(userIndex).name).append("\n");

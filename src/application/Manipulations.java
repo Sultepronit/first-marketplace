@@ -34,10 +34,10 @@ public class Manipulations {
 	
 	static boolean checkProductID(String command) {
 		if(command.charAt(0) != 'p') return false;
-		int index = StringToInt(command.substring(1));
-		if(index <= 0) return false;
-		if(index > Database.productIndexChanges.size()) return false;
-		index = Database.productIndexChanges.get(index - 1);
+		int id = StringToInt(command.substring(1));
+		if(id <= 0) return false;
+		if(id > Database.productIdToIndex.size()) return false;
+		int index = Database.productIdToIndex.get(id);
 		if(index < 0) {
 			System.out.println("There are no products with this ID. Check the list and try again.");
 			Database.printOutProductList();
@@ -46,7 +46,7 @@ public class Manipulations {
 		}
 		Database.productList.get(index).infoOut();
 		if(Database.deleteStatus == 1) {
-			Database.productToDelete = index;
+			Database.productToDelete = id;
 		}
 		else {
 			if(Buying.status > 0) {
