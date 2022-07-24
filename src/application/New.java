@@ -45,10 +45,10 @@ public class New {
 			case 2:
 				double price = moneyToDouble(line);
 				if(price > 0) {
-					Database.productList2.add( new Product(name, price) );
+					Database.productList.add( new Product(name, price) );
 					System.out.println("Succsess!");
-					Database.productList2.get(Database.productList2.size() - 1).infoOut();
-					System.out.println(Database.productList2.size());
+					Database.productList.get(Database.productList.size() - 1).infoOut();
+					System.out.println(Database.productList.size());
 					prouctStatus = 0;
 				}
 				
