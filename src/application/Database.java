@@ -7,6 +7,11 @@ public class Database {
 	static ArrayList<Product> productList = new ArrayList<Product>();
 	static ArrayList<User> userList = new ArrayList<User>();
 	static ArrayList<int[]> purchases = new ArrayList<int[]>();
+	//static ArrayList<int[]> productIndexChanges = new ArrayList<int[]>();
+	static List<Integer> productIndexChanges = new ArrayList<>();
+	//ArrayList<int> cars = new ArrayList<int>();
+	static ArrayList<int[]> userIndexChanges = new ArrayList<int[]>();
+	
 	
 	Database() {
 	productList.add( new Product("Oven", 1000.00) );
@@ -109,6 +114,23 @@ public class Database {
 		productToDelete = -1;
 	}
 	
+	static void deleteUser() {
+		userList.remove(userToDelete);
+	}
+	
+	static void deleteProduct() {
+		productList.remove(productToDelete);
+		productIndexChanges.set(productToDelete, -1);
+		for(int i = productToDelete + 1; i < productIndexChanges.size(); i++) {
+			int value = productIndexChanges.get(i) - 1;
+			productIndexChanges.set(i, value);
+		}
+		for(int i = 0; i < productIndexChanges.size(); i++) {
+			System.out.println(i + " " + productIndexChanges.get(i));
+		}
+		//productIndexChanges
+	}
+	
 	static void delete(String command) {
 		switch (deleteStatus) {
 			case 0:
@@ -129,6 +151,12 @@ public class Database {
 				
 			case 2: 
 				if(command.equals("y")) {
+					if(userToDelete >= 0) {
+						deleteUser();
+					}
+					else {
+						deleteProduct();
+					}
 					//System.out.println("Deleted.\nYou may enter new command.");
 					System.out.println("Deleted.");
 				}
