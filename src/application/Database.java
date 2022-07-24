@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Database {
 	//simple database imitation
+	static ArrayList<Product> productList2 = new ArrayList<Product>();
+	
 	static Product[] productList = new Product[3];
 	static User[] userList = new User[3];
 	static ArrayList<int[]> purchases = new ArrayList<int[]>();

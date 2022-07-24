@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class App {
 	
-	static Database base = new Database();
+	/*static Database base = new Database();
 	static Manipulations tool = new Manipulations(); 
-	static Buying buying = new Buying();
+	static Buying buying = new Buying();*/
 	
 	static void checkMainCommands(String command) {
 		String commandNoCase = command.toLowerCase();
@@ -27,7 +27,11 @@ public class App {
 				break;
 			}
 			if(New.prouctStatus > 0) {
-				New.CreateProduct(command);
+				New.createProduct(command);
+				break;
+			}
+			if(New.userStatus > 0) {
+				New.createUser(command);
 				break;
 			}
 			if(commandNoCase.equals("products")) { 
@@ -39,7 +43,11 @@ public class App {
 				break;
 			}
 			if(commandNoCase.equals("new product")) { 
-				New.CreateProduct("");
+				New.createProduct("");
+				break;
+			}
+			if(commandNoCase.equals("new user")) { 
+				New.createUser("");
 				break;
 			}
 			if(command == "") {
