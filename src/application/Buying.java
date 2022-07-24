@@ -25,7 +25,10 @@ public class Buying {
 			System.out.print("Success! Your account balance is now: ");
 			System.out.println(Database.userList.get(userIndex).moneyToString());
 			
-			int[] record = {userIndex, productIndex};
+			int[] record = {
+					Database.userList.get(userIndex).intId, 
+					Database.productList.get(productIndex).intId
+					};
 			Database.purchases.add(record);
 			Database.userList.get(userIndex).purchaseCount++;
 			Database.productList.get(productIndex).purchaseCount++;

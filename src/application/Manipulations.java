@@ -13,16 +13,18 @@ public class Manipulations {
 	
 	static boolean checkUserID(String command) {
 		if(command.charAt(0) != 'u') return false;
-		int index = StringToInt(command.substring(1));
-		if(index < 0) return false;
-		if(index > Database.userList.size() || index < 1) {
+		int id = StringToInt(command.substring(1));
+		if(id <= 0) return false;
+		if(id >= Database.userIdToIndex.size()) return false;
+		int index = Database.userIdToIndex.get(id);
+		if(index < 0) {
 			System.out.println("There are no users with this ID. Check the list and try again.");
 			Database.printOutUserList();
 			return false;
 		}
-		Database.userList.get(--index).infoOut();
+		Database.userList.get(index).infoOut();
 		if(Database.deleteStatus == 1) {
-			Database.userToDelete = index;
+			Database.userToDelete = id;
 		}
 		else {
 			System.out.println("You can buy something now by entering the product ID.");
@@ -36,7 +38,7 @@ public class Manipulations {
 		if(command.charAt(0) != 'p') return false;
 		int id = StringToInt(command.substring(1));
 		if(id <= 0) return false;
-		if(id > Database.productIdToIndex.size()) return false;
+		if(id >= Database.productIdToIndex.size()) return false;
 		int index = Database.productIdToIndex.get(id);
 		if(index < 0) {
 			System.out.println("There are no products with this ID. Check the list and try again.");

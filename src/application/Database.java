@@ -94,6 +94,11 @@ public class Database {
 			int value = productIdToIndex.get(i) - 1;
 			productIdToIndex.set(i, value);
 		}
+		for(int i = 0; i <purchases.size(); i++) {
+			if(purchases.get(i)[1] == productToDelete) {
+				purchases.remove(i);
+			}
+		}
 		for(int i = 1; i < productIdToIndex.size(); i++) {
 			System.out.println(i + " " + productIdToIndex.get(i));
 		}

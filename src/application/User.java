@@ -13,6 +13,7 @@ public class User {
 	User(String firstName, String lastName, double money) {
 		intId = idCount;
 		id = "U"+String.format("%04d", idCount++);
+		Database.userIdToIndex.add( Database.userList.size() );
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.money = money;
@@ -31,7 +32,8 @@ public class User {
 			for( int i = 0; i < Database.purchases.size(); i++) {
 				if(n >= purchaseCount) break;
 				if(intId == Database.purchases.get(i)[0]) {
-					int productIndex = Database.purchases.get(i)[1];
+					int productId = Database.purchases.get(i)[1];
+					int productIndex = Database.productIdToIndex.get(productId);
 					list.append(Database.productList.get(productIndex).id).append(" ");
 					list.append(Database.productList.get(productIndex).name).append("\n");
 					n++;
