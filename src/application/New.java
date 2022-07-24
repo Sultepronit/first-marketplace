@@ -41,6 +41,7 @@ public class New {
 					prouctStatus++;
 				}
 				break;
+				
 			case 2:
 				double price = moneyToDouble(line);
 				if(price > 0) {
@@ -75,14 +76,26 @@ public class New {
 					userStatus++;
 				}
 				break;
+				
 			case 2:
-				double price = moneyToDouble(line);
-				if(price > 0) {
-					Database.productList2.add( new Product(name, price) );
+				if(line.isBlank()) {
+					System.out.println("Please enter user last name");
+				}
+				else {
+					lastName = line;
+					System.out.println("Now enter user amount of money");
+					userStatus++;
+				}
+				break;
+				
+			case 3:
+				double money = moneyToDouble(line);
+				if(money > 0) {
+					Database.userList2.add( new User(name, lastName, money) );
 					System.out.println("Succsess!");
-					Database.productList2.get(Database.productList2.size() - 1).infoOut();
-					System.out.println(Database.productList2.size());
-					prouctStatus = 0;
+					Database.userList2.get(Database.userList2.size() - 1).infoOut();
+					System.out.println(Database.userList2.size());
+					userStatus = 0;
 				}
 				
 		}
