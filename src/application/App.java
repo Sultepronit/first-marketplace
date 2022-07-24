@@ -4,9 +4,7 @@ import java.util.Scanner;
 
 public class App {
 	
-	static Database base = new Database();
-	//static Manipulations tool = new Manipulations(); 
-	//static Buying buying = new Buying();
+	//static Database base = new Database(); //creates first users & products
 	
 	static void checkMainCommands(String command) {
 		String commandNoCase = command.toLowerCase();
@@ -35,18 +33,11 @@ public class App {
 				break;
 			}
 			if(Database.deleteStatus > 0) {
-				//Database.deleteStatus++;
-				//System.out.println("Canceled.\nYou may enter new command.");
 				Manipulations.checkUserID(commandNoCase);
 				Manipulations.checkProductID(commandNoCase);
 				Database.delete(commandNoCase);
-				//Database.deleteStatus++;
 				break;
 			}
-			/*if(Database.deleteStatus > 1) {
-				Database.delete("");
-				break;
-			}*/
 			if(commandNoCase.equals("products")) { 
 				Database.printOutProductList();
 				break;
@@ -64,7 +55,6 @@ public class App {
 				break;
 			}
 			if(commandNoCase.equals("delete")) { 
-				//Database.deleteStatus = 1;
 				Database.delete("");
 				break;
 			}
@@ -87,15 +77,14 @@ public class App {
 
 		String[][] commands = {
 				//{"Command:", "Description:"},
-				
 				{"users", "Shows the list of all users."},
 				{"(user_ID)", "Shows information about the user; lets you buy a product."},
 				{"new user", "Creates new user entry."},
 				{"products", "Shows the list of all products."},
 				{"(product_ID)", "Shows information about the product."},
 				{"new product", "Creates new product entry."},
-				{"delete", "Deletes user/product entry."},
-				{"exit", "Exits from this programm."},
+				//{"delete", "Deletes user/product entry."},
+				{"exit", "Exits this program."},
 		};
 		
 		for(String[] command: commands) {
@@ -120,6 +109,9 @@ public class App {
 	public static void main(String[] args) {
 		
 		System.out.println("Hello! This marketplace app does not have a GUI. Just follow the simple instructions.");
+		System.out.println("There are no users in database. Use command \"new user\" to add the first user.");
+		System.out.println("There are no products in database. Use command \"new product\" to add the first product.");
+		System.out.println("Be careful! In this version of program you can't delete an entry!");
 		
 		makeMenu();
 

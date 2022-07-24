@@ -36,13 +36,14 @@ public class Manipulations {
 		if(command.charAt(0) != 'p') return false;
 		int index = StringToInt(command.substring(1));
 		if(index <= 0) return false;
-		if(index > Database.productList.size()) {
+		if(index > Database.productIndexChanges.size()) return false;
+		index = Database.productIndexChanges.get(index - 1);
+		if(index < 0) {
 			System.out.println("There are no products with this ID. Check the list and try again.");
 			Database.printOutProductList();
 			Buying.status++;//lets user buy product after he enter proper ID 
 			return false;
 		}
-		index = Database.productIndexChanges.get(index - 1);
 		Database.productList.get(index).infoOut();
 		if(Database.deleteStatus == 1) {
 			Database.productToDelete = index;

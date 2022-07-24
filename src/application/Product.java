@@ -1,6 +1,5 @@
 package application;
 
-//public class Product extends Unit {
 public class Product {
 	static int idCount = 1;
 	public int index;
@@ -11,8 +10,6 @@ public class Product {
 	
 	Product(String name, double price) {
 		index = idCount - 1;
-		int[] record = {index, Database.productList.size()};
-		//System.out.println(record[0]+" "+record[1]);
 		Database.productIndexChanges.add( Database.productList.size() );
 		id = "P"+String.format("%04d", idCount++);
 		this.name = name;
