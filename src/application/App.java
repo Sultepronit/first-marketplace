@@ -69,11 +69,14 @@ public class App {
 
 		String[][] commands = {
 				//{"Command:", "Description:"},
-				{"products", "Shows the list of all products"},
-				{"users", "Shows the list of all users"},
-				{"(product_ID)", "Shows information about the product"},
-				{"(user_ID)", "Shows information about the user; lets you buy a product"},
-				{"exit", "Exits from this programm"},
+				
+				{"users", "Shows the list of all users."},
+				{"(user_ID)", "Shows information about the user; lets you buy a product."},
+				{"new user", "Creates new user entry."},
+				{"products", "Shows the list of all products."},
+				{"(product_ID)", "Shows information about the product."},
+				{"new product", "Creates new product entry."},
+				{"exit", "Exits from this programm."},
 		};
 		
 		for(String[] command: commands) {

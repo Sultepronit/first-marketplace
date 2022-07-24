@@ -1,6 +1,7 @@
 package application;
 
-public class User extends Unit {
+//public class User extends Unit {
+public class User {
 	static int idCount = 1;
 	public int index;
 	public String id;

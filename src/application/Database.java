@@ -6,16 +6,9 @@ public class Database {
 	//simple database imitation
 	static ArrayList<Product> productList = new ArrayList<Product>();
 	static ArrayList<User> userList = new ArrayList<User>();
-	
-	//static Product[] productList = new Product[3];
-	//static User[] userList = new User[3];
 	static ArrayList<int[]> purchases = new ArrayList<int[]>();
 	
 	Database() {
-
-	/*productList[0] = new Product("Oven", 1000.00);
-	productList[1] = new Product("Electric kettle", 200.00);
-	productList[2] = new Product("Fan", 150.00);*/
 	productList.add( new Product("Oven", 1000.00) );
 	productList.add( new Product("Electric kettle", 200.00) );
 	productList.add( new Product("Fan", 150.00) );
@@ -25,7 +18,7 @@ public class Database {
 	userList.add( new User("Stepan", "Muts", 359.75) );
 	}
 	
-	static void printOutList0(Unit[] list, String sum) {	
+	/*static void printOutList0(Unit[] list, String sum) {	
 		int w1, w2 = 0, w3 = 0;//width of 3 columns
 		String[][] stringList = new String[list.length][3];
 		for(int i = 0; i < list.length; i++) {
@@ -65,7 +58,7 @@ public class Database {
 			System.out.format(tableFormat, stringList[i][0], stringList[i][1]);
 			System.out.format(numberFormat, stringList[i][2]);
 		}
-	}
+	}*/
 	
 	static void printOutList2(String[][] list, String sum) {	
 		int w1, w2 = 0, w3 = 0;//width of 3 columns
