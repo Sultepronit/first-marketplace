@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class App {
 	
-	/*static Database base = new Database();
+	static Database base = new Database();
 	static Manipulations tool = new Manipulations(); 
-	static Buying buying = new Buying();*/
+	static Buying buying = new Buying();
 	
 	static void checkMainCommands(String command) {
 		String commandNoCase = command.toLowerCase();

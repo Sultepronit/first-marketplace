@@ -13,7 +13,6 @@ public class Manipulations {
 	
 	static boolean checkUserID(String command) {
 		if(command.charAt(0) != 'u') return false;
-		//if(command == "u") return false;
 		int index = StringToInt(command.substring(1));
 		if(index < 0) return false;
 		if(index > Database.userList.length || index < 1) {

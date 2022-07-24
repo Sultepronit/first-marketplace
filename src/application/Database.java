@@ -45,6 +45,7 @@ public class Database {
 	
 	static void printOutUserList() {
 		System.out.println("List of all users:");
+		//System.out.println(list[0].getInfo());
 		printOutList(userList, "Amount of money:");
 	}
 	
