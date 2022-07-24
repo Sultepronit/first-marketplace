@@ -21,9 +21,14 @@ public class Manipulations {
 			return false;
 		}
 		Database.userList.get(--index).infoOut();
-		System.out.println("You can buy something now by entering the product ID.");
-		Buying.userIndex = index;
-		Buying.status = 2;
+		if(Database.deleteStatus == 1) {
+			Database.userToDelete = index;
+		}
+		else {
+			System.out.println("You can buy something now by entering the product ID.");
+			Buying.userIndex = index;
+			Buying.status = 2;
+		}
 		return true;
 	}
 	
@@ -38,9 +43,14 @@ public class Manipulations {
 			return false;
 		}
 		Database.productList.get(--index).infoOut();
-		if(Buying.status > 0) {
-			Buying.productIndex = index;
-			Buying.buy();
+		if(Database.deleteStatus == 1) {
+			Database.productToDelete = index;
+		}
+		else {
+			if(Buying.status > 0) {
+				Buying.productIndex = index;
+				Buying.buy();
+			}
 		}
 
 		return true;

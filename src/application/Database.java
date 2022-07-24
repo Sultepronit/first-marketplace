@@ -98,4 +98,47 @@ public class Database {
 		}
 		printOutList2(stringList, "Price:");
 	}
+	
+	static byte deleteStatus = 0;
+	static int userToDelete = -1;
+	static int productToDelete = -1;
+	
+	static void deleteEnd() {
+		deleteStatus = 0;
+		userToDelete = -1;
+		productToDelete = -1;
+	}
+	
+	static void delete(String command) {
+		switch (deleteStatus) {
+			case 0:
+				System.out.println("Enter the user/product ID you want to delete");
+				deleteStatus++;
+				break;
+				
+			case 1:
+				if(userToDelete >= 0 || productToDelete >= 0) {
+					System.out.println("Do you confirm removal? Enter Y/N");
+					deleteStatus++;
+				}
+				else {
+					System.out.println("Canceled.\nYou may enter new command.");
+					deleteEnd();
+				}
+				break;
+				
+			case 2: 
+				if(command.equals("y")) {
+					//System.out.println("Deleted.\nYou may enter new command.");
+					System.out.println("Deleted.");
+				}
+				else {
+					System.out.println("Canceled.\nYou may enter new command.");
+				}
+				deleteEnd();
+				
+		}
+		
+		
+	}
 }

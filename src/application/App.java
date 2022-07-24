@@ -34,6 +34,19 @@ public class App {
 				New.createUser(command);
 				break;
 			}
+			if(Database.deleteStatus > 0) {
+				//Database.deleteStatus++;
+				//System.out.println("Canceled.\nYou may enter new command.");
+				Manipulations.checkUserID(commandNoCase);
+				Manipulations.checkProductID(commandNoCase);
+				Database.delete(commandNoCase);
+				//Database.deleteStatus++;
+				break;
+			}
+			/*if(Database.deleteStatus > 1) {
+				Database.delete("");
+				break;
+			}*/
 			if(commandNoCase.equals("products")) { 
 				Database.printOutProductList();
 				break;
@@ -48,6 +61,11 @@ public class App {
 			}
 			if(commandNoCase.equals("new user")) { 
 				New.createUser("");
+				break;
+			}
+			if(commandNoCase.equals("delete")) { 
+				//Database.deleteStatus = 1;
+				Database.delete("");
 				break;
 			}
 			if(command == "") {
@@ -76,6 +94,7 @@ public class App {
 				{"products", "Shows the list of all products."},
 				{"(product_ID)", "Shows information about the product."},
 				{"new product", "Creates new product entry."},
+				{"delete", "Deletes user/product entry."},
 				{"exit", "Exits from this programm."},
 		};
 		
