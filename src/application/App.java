@@ -11,6 +11,11 @@ public class App {
 	static void checkMainCommands(String command) {
 		String commandNoCase = command.toLowerCase();
 		do {
+			if(commandNoCase.equals("exit")) { 
+				oneMoreTime = false;
+				System.out.println("Thank you for using our application!");
+				break;
+			}
 			if(Buying.status > 1) {
 				Buying.status = 0;
 				if(commandNoCase.equals("y")) {
@@ -21,7 +26,10 @@ public class App {
 				}
 				break;
 			}
-			
+			if(New.prouctStatus > 0) {
+				New.CreateProduct(command);
+				break;
+			}
 			if(commandNoCase.equals("products")) { 
 				Database.printOutProductList();
 				break;
@@ -30,9 +38,8 @@ public class App {
 				Database.printOutUserList();
 				break;
 			}
-			if(commandNoCase.equals("exit")) { 
-				oneMoreTime = false;
-				System.out.println("Thank you for using our application!");
+			if(commandNoCase.equals("new product")) { 
+				New.CreateProduct("");
 				break;
 			}
 			if(command == "") {
