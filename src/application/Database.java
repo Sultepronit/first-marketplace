@@ -20,9 +20,11 @@ public class Database {
 	productList.add( new Product("Oven", 1000.00) );
 	productList.add( new Product("Electric kettle", 200.00) );
 	productList.add( new Product("Fan", 150.00) );
+	productList.add( new Product("Pan", 100.00) );
 	userList.add( new User("John", "McDonald", 10000.00) );
 	userList.add( new User("Anna", "Yamada", 2000.00) );
 	userList.add( new User("Stepan", "Muts", 359.75) );
+	userList.add( new User("Veronika", "Kolot", 3590.00) );
 	}
 	
 	static void printOutList2(String[][] list, String sum) {	
@@ -83,23 +85,43 @@ public class Database {
 	}
 	
 	static void deleteUser() {
-		userList.remove(userToDelete);
+		int index = userIdToIndex.get(userToDelete);
+		userList.remove(index);
+		
+		userIdToIndex.set(userToDelete, -1);
+		for(int i = userToDelete + 1; i < userIdToIndex.size(); i++) {
+			int value = userIdToIndex.get(i) - 1;
+			userIdToIndex.set(i, value);
+		}
+		
+		for(int i = 0; i <purchases.size(); i++) {
+			if(purchases.get(i)[0] == userToDelete) {
+				purchases.remove(i);
+			}
+		}
+		
+		for(int i = 1; i < userIdToIndex.size(); i++) {//hide this
+			System.out.println(i + " " + userIdToIndex.get(i));
+		}
 	}
 	
 	static void deleteProduct() {
 		int index = productIdToIndex.get(productToDelete);
 		productList.remove(index);
+		
 		productIdToIndex.set(productToDelete, -1);
 		for(int i = productToDelete + 1; i < productIdToIndex.size(); i++) {
 			int value = productIdToIndex.get(i) - 1;
 			productIdToIndex.set(i, value);
 		}
+		
 		for(int i = 0; i <purchases.size(); i++) {
 			if(purchases.get(i)[1] == productToDelete) {
 				purchases.remove(i);
 			}
 		}
-		for(int i = 1; i < productIdToIndex.size(); i++) {
+		
+		for(int i = 1; i < productIdToIndex.size(); i++) {//hide this
 			System.out.println(i + " " + productIdToIndex.get(i));
 		}
 	}
