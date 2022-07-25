@@ -34,9 +34,7 @@ public class User {
 				if(intId == Database.purchases.get(i)[0]) {
 					int productId = Database.purchases.get(i)[1];
 					int productIndex = Database.productIdToIndex.get(productId);
-					/*if(productIndex < 0) {
-						
-					}*/
+
 					list.append(Database.productList.get(productIndex).id).append(" ");
 					list.append(Database.productList.get(productIndex).name).append("\n");
 					n++;

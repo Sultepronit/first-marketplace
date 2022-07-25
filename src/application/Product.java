@@ -30,6 +30,7 @@ public class Product {
 				if(intId == Database.purchases.get(i)[1]) {
 					int userId = Database.purchases.get(i)[0];
 					int userIndex = Database.userIdToIndex.get(userId);
+					
 					list.append(Database.userList.get(userIndex).id).append(" ");
 					list.append(Database.userList.get(userIndex).name).append("\n");
 					n++;

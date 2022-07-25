@@ -83,7 +83,7 @@ public class App {
 				{"products", "Shows the list of all products."},
 				{"(product_ID)", "Shows information about the product."},
 				{"new product", "Creates new product entry."},
-				//{"delete", "Deletes user/product entry."},
+				{"delete", "Deletes user/product entry."},
 				{"exit", "Exits this program."},
 		};
 		
@@ -111,7 +111,6 @@ public class App {
 		System.out.println("Hello! This marketplace app does not have a GUI. Just follow the simple instructions.");
 		System.out.println("There are no users in database. Use command \"new user\" to add the first user.");
 		System.out.println("There are no products in database. Use command \"new product\" to add the first product.");
-		System.out.println("Be careful! In this version of program you can't delete an entry!");
 		
 		makeMenu();
 

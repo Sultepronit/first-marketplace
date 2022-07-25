@@ -6,6 +6,7 @@ public class Database {
 	//simple database imitation
 	static ArrayList<Product> productList = new ArrayList<Product>();
 	static ArrayList<User> userList = new ArrayList<User>();
+	
 	static ArrayList<int[]> purchases = new ArrayList<int[]>();
 
 	static List<Integer> productIdToIndex = new ArrayList<>();
@@ -17,18 +18,16 @@ public class Database {
 	userIdToIndex.add(0);
 	
 	//creates first users & products
-	productList.add( new Product("Oven", 1000.00) );
+	/*productList.add( new Product("Oven", 1000.00) );
 	productList.add( new Product("Electric kettle", 200.00) );
 	productList.add( new Product("Fan", 150.00) );
-	productList.add( new Product("Pan", 100.00) );
 	userList.add( new User("John", "McDonald", 10000.00) );
 	userList.add( new User("Anna", "Yamada", 2000.00) );
-	userList.add( new User("Stepan", "Muts", 359.75) );
-	userList.add( new User("Veronika", "Kolot", 3590.00) );
+	userList.add( new User("Stepan", "Muts", 359.75) );*/
 	}
 	
 	static void printOutList2(String[][] list, String sum) {	
-		int w1, w2 = 0, w3 = 0;//width of 3 columns
+		int w1, w2 = 5, w3 = 0;//width of 3 columns
 		for(int i = 0; i < list.length; i++) {
 			w2 = (w2 < list[i][1].length()) ? list[i][1].length() : w2;
 			w3 = (w3 < list[i][2].length()) ? list[i][2].length() : w3;
@@ -100,9 +99,9 @@ public class Database {
 			}
 		}
 		
-		for(int i = 1; i < userIdToIndex.size(); i++) {//hide this
+		/*for(int i = 1; i < userIdToIndex.size(); i++) {//hide this
 			System.out.println(i + " " + userIdToIndex.get(i));
-		}
+		}*/
 	}
 	
 	static void deleteProduct() {
@@ -121,9 +120,9 @@ public class Database {
 			}
 		}
 		
-		for(int i = 1; i < productIdToIndex.size(); i++) {//hide this
+		/*for(int i = 1; i < productIdToIndex.size(); i++) {//hide this
 			System.out.println(i + " " + productIdToIndex.get(i));
-		}
+		}*/
 	}
 	
 	static void delete(String command) {
